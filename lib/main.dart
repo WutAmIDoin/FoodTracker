@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_tracker/screens//inventory/inventoryScreen.dart';
 import 'package:food_tracker/screens/inventory/questions.dart';
 import 'package:food_tracker/widgets/addInventBtn.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -59,16 +60,16 @@ class MyHomePageState extends State<MyHomePage> {
        currentIndex: currentIndex, // this will be set when a new tab is tapped
        items: [
          BottomNavigationBarItem(
-           icon: new Icon(Icons.home),
-           title: new Text('Home'),
+           icon: new Icon(MdiIcons.fridge, size: 50),
+           title: new Text('My Foods'),
          ),
          BottomNavigationBarItem(
-           icon: new Icon(Icons.mail),
-           title: new Text('Messages'),
+           icon: new Icon(MdiIcons.fileDocumentBoxCheckOutline, size: 50),
+           title: new Text('Necessiities'),
          ),
          BottomNavigationBarItem(
-           icon: Icon(Icons.person),
-           title: Text('Profile')
+           icon: Icon(MdiIcons.ticketConfirmation, size: 50),
+           title: Text('Coupons')
          )
        ],
      ),
