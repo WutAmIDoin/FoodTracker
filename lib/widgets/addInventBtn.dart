@@ -1,14 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_tracker/screens/addInventoryScreen.dart';
 
-class AddInventBtn extends FloatingActionButton{
+class AddInventBtn extends StatelessWidget{
 
-  AddInventBtn():super(
-        onPressed: () {
-          Firestore.instance.collection('food').document()
-            .setData({ 'name': 'Food'});
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      );
+  @override
+  Widget build(BuildContext context){
+    return FloatingActionButton(
+      onPressed: () {
+          Navigator.push(context, CupertinoPageRoute(
+                builder: (_) => AddInventoryScreen(false,null)));
+      },
+      child: Icon(Icons.add),);
+  }
 }
