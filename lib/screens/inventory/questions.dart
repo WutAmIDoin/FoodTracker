@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food_tracker/main.dart';
 
@@ -112,6 +113,26 @@ class _QuestionsState extends State<Questions> {
               onPressed: (){
                 widget.parent.setState(
                   () {
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "chinese", "value" :chiVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "canadian", "value" : canVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "japanese", "value" :japVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "french", "value" :freVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "arabian", "value" :araVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "indian", "value" :indVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "gluten", "value" :gluVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "vegetarian", "value" :vegVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "Halal", "value" :halVal});
+                    Firestore.instance.collection("preference").document()
+                    .setData({"type" : "lactose", "value" :lacVal});
                     widget.parent.currentIndex = 0;
                   }
                 );
