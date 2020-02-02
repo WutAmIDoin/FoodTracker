@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_tracker/screens/addInventoryScreen.dart';
 
 enum FoodScreens {all, expiring, expired}
 
@@ -41,7 +43,10 @@ class MyFoodScreen extends StatelessWidget{
                     children: <Widget>[
                       IconButton(
                         highlightColor: Colors.white10,
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.push(context, CupertinoPageRoute(
+                            builder: (_) => AddInventoryScreen(true,document.documentID)))
+                        },
                         icon: new Icon(Icons.edit, color: Colors.black),
                       ),
                       IconButton(
