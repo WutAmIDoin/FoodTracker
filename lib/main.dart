@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_tracker/screens//inventory/inventoryScreen.dart';
+import 'package:food_tracker/screens/inventory/questions.dart';
 import 'package:food_tracker/widgets/addInventBtn.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -22,47 +25,51 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: "Food Track", firstTime: true,),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  MyHomePage({this.title});
+  bool firstTime;
+  MyHomePage({this.title,this.firstTime = false});
   @override
-  _MyHomePageState createState() {
-    return _MyHomePageState();
+  MyHomePageState createState() {
+    return MyHomePageState();
   }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
+class MyHomePageState extends State<MyHomePage> {
+  int currentIndex = -1;
   final List<Widget> _bodies = [InventoryScreen(),Container(),Container()];
   final List<Widget> _floatingBtn =[AddInventBtn(),null,null];
   @override
   Widget build(BuildContext context) {
+    if(currentIndex == -1){
+      return Questions(this);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _bodies[_currentIndex],
-      floatingActionButton: _floatingBtn[_currentIndex],
+      body: _bodies[currentIndex],
+      floatingActionButton: _floatingBtn[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
       onTap: onTabTapped,
-       currentIndex: _currentIndex, // this will be set when a new tab is tapped
+       currentIndex: currentIndex, // this will be set when a new tab is tapped
        items: [
          BottomNavigationBarItem(
-           icon: new Icon(Icons.home),
-           title: new Text('Home'),
+           icon: new Icon(MdiIcons.fridge, size: 50),
+           title: new Text('My Foods'),
          ),
          BottomNavigationBarItem(
-           icon: new Icon(Icons.mail),
-           title: new Text('Messages'),
+           icon: new Icon(MdiIcons.fileDocumentBoxCheckOutline, size: 50),
+           title: new Text('Necessiities'),
          ),
          BottomNavigationBarItem(
-           icon: Icon(Icons.person),
-           title: Text('Profile')
+           icon: Icon(MdiIcons.ticketConfirmation, size: 50),
+           title: Text('Coupons')
          )
        ],
      ),
@@ -70,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   void onTabTapped(int index) {
    setState(() {
-     _currentIndex = index;
+     currentIndex = index;
    });
  }
 }
