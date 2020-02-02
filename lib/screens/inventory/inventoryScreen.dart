@@ -19,7 +19,7 @@ class _InventoryState extends State<InventoryScreen>{
 
             children: <Widget>[
               _element('My Food', FoodScreens.all),
-              _element('Expiring', FoodScreens.expiring),
+              _element('Expiring in 3 days', FoodScreens.expiring),
               _element('Expired', FoodScreens.expired),
             ],
           ),

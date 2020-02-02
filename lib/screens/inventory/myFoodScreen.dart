@@ -21,12 +21,13 @@ class MyFoodScreen extends StatelessWidget{
         stream = Firestore.instance
           .collection('food')
           .where("expireDay", isLessThan: 4)
+          .where("expireDay", isGreaterThan: 0)
           .snapshots();
         break;
       case FoodScreens.expired:
         stream = Firestore.instance
           .collection('food')
-          .where("expireDay", isLessThan: 0)
+          .where("expireDay", isLessThanOrEqualTo: 0)
           .snapshots();
         break;
 
