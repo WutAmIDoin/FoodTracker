@@ -36,7 +36,11 @@ class _InventoryState extends State<InventoryScreen>{
       padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
       child: FlatButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        child: Text(text),
+        child: Text(text,
+        style: TextStyle(
+            color: screen == _currentScreen ? Colors.black : Colors.grey,
+            decoration: screen == _currentScreen ? TextDecoration.underline : TextDecoration.none,
+          ),),
         onPressed: () => onTabTapped(screen),
       ),
     );
