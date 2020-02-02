@@ -17,10 +17,16 @@ class MyFoodScreen extends StatelessWidget{
       case FoodScreens.all:
         stream = Firestore.instance.collection('food').snapshots();
         break;
-      default:
+      case FoodScreens.expiring:
         stream = Firestore.instance
           .collection('food')
-          .where("name", isEqualTo: "Food")
+          .where("expireDay", isLessThan: 4)
+          .snapshots();
+        break;
+      case FoodScreens.expired:
+        stream = Firestore.instance
+          .collection('food')
+          .where("expireDay", isLessThan: 0)
           .snapshots();
         break;
 
@@ -38,6 +44,8 @@ class MyFoodScreen extends StatelessWidget{
               children: snapshot.data.documents.map((DocumentSnapshot document) {
                 return new ListTile(
                   title: new Text(document['name']),
+                  subtitle: new Text("Day left: ${document['expireDay'].toString()} Quantity: ${document['quantity'].toString()}",
+                    style: TextStyle(color: document['expireDay'] <= 3 ? Colors.red : Colors.black)),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
