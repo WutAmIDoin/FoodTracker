@@ -9,6 +9,7 @@ class AddInventBtn extends FloatingActionButton{
             .setData({ 'name': 'Food'});
         },
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        // child: Icon(Icons.add),
+        child: Image.asset('images/AddButton.png'),
       );
 }
